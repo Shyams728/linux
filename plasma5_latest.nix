@@ -47,10 +47,11 @@
   
 
   # Enable the Deepin Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = false;
-  services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.deepin.enable = false;  # Disable Deepin
-  services.xserver.desktopManager.gnome.enable = true;   # Enable Gnome
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.deepin.enable = false;  # Disable Deepin
+  services.xserver.desktopManager.gnome.enable = false;   # Disable Gnome
+  services.xserver.desktopManager.plasma5.enable = true;   # Enable KDE
+ 
 
   # Configure keymap in X11
   #services.xserver.keyboardLayout = "us";
@@ -74,13 +75,13 @@
 
   # Enable sound with Pipewire
   sound.enable = true;
-  hardware.pulseaudio.enable = false; # Disable PulseAudio
+  hardware.pulseaudio.enable = true; # Disable PulseAudio
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = true;
+    enable = false;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = false; # Disable PulseAudio pulse support
+    pulse.enable = true; # Disable PulseAudio pulse support
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
@@ -95,12 +96,14 @@
       python311
       python311Packages.pip
       python311Packages.autopep8
+      google-chrome 
       git
       vlc
       zoom-us
       zip
       microsoft-edge
       gh
+      oh-my-zsh
     ];
   };
 
@@ -113,21 +116,30 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  services.flatpak.enable =true;
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     lf
-    gnome.gnome-tweaks
-    gnome.gnome-themes-extra
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.compact-top-bar 
-    gnome.gnome-terminal
-    gnome.adwaita-icon-theme
-    gnomeExtensions.dashbar
+    man
+    vim 
+    git
+    tmux
+    zsh
+    oh-my-zsh
+
   ];
+
+
+  
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    plugins = [ "git" "python" "man"];
+    theme = "agnoster";
+  };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -140,7 +152,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

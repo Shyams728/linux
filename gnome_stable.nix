@@ -47,8 +47,8 @@
   
 
   # Enable the Deepin Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = false;
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
   #services.xserver.desktopManager.deepin.enable = false;  # Disable Deepin
   services.xserver.desktopManager.gnome.enable = true;   # Enable Gnome
 
@@ -69,21 +69,37 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-
-
-  # Enable sound with Pipewire
+  
   sound.enable = true;
-  hardware.pulseaudio.enable = false; # Disable PulseAudio
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = false; # Disable PulseAudio pulse support
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
+  hardware.pulseaudio.enable = true;
+  # services.pulseaudio.enable = true;
+
+  # # Enable sound with Pulse Audio
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = lib.mkForce true; # Enable PulseAudio
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = lib.mkForce false;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = lib.mkForce false; # Disable PulseAudio within PipeWire
+  #   # If you want to use JACK applications, uncomment this
+  #   # jack.enable = true;
+  # };
+
+
+  # # Enable sound with Pipewire
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = false; # Disable PulseAudio
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = false; # Disable PulseAudio pulse support
+  #   # If you want to use JACK applications, uncomment this
+  #   #jack.enable = true;
+  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shyamsundar = {
@@ -122,11 +138,18 @@
     lf
     gnome.gnome-tweaks
     gnome.gnome-themes-extra
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.compact-top-bar 
     gnome.gnome-terminal
     gnome.adwaita-icon-theme
     gnomeExtensions.dashbar
+    gnomeExtensions.space-bar
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.compact-top-bar 
+    gnomeExtensions.window-title-is-back
+    gnomeExtensions.vitals
+    gnomeExtensions.vertical-workspaces
+    gnomeExtensions.transparent-top-bar-adjustable-transparency
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
