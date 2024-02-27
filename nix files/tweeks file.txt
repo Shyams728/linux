@@ -1,0 +1,29 @@
+gnome.gnome-tweaks
+gnome.gnome-themes-extra
+gnome.gnome-terminal
+gnome.adwaita-icon-theme
+gnomeExtensions.dashbar
+gnomeExtensions.space-bar
+gnomeExtensions.icon-hider
+gnomeExtensions.no-title-bar
+gnomeExtensions.hide-top-bar
+gnomeExtensions.dash-to-dock
+gnomeExtensions.compact-top-bar 
+gnomeExtensions.transparent-shell
+gnomeExtensions.window-title-is-back
+gnomeExtensions.window-list
+gnomeExtensions.vitals
+gnomeExtensions.vertical-workspaces
+gnomeExtensions.transparent-topbar
+gnomeExtensions.transparent-top-bar-adjustable-transparency
+
+        
+services.flatpak.enable =true;
+
+ # Enable the GNOME Desktop Environment.
+ # services.xserver.displayManager.gdm.enable = true;
+ # services.xserver.desktopManager.gnome.enable = true;
+
+
+  hardware.pulseaudio.enable = lib.mkForce false;
+  services.pipewire.enable = lib.mkForce true;
